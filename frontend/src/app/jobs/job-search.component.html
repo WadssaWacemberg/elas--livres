@@ -3,6 +3,18 @@
     <p class="jobs-kicker">✦ OPORTUNIDADES</p>
     <h2 id="jobs-title">Encontre seu próximo caminho.</h2>
     <p class="jobs-intro">Explore oportunidades por área e modalidade de trabalho.</p>
+    <button class="simple-help-toggle" type="button" [attr.aria-expanded]="showSimpleHelp" aria-controls="simple-help" (click)="showSimpleHelp = !showSimpleHelp">{{ showSimpleHelp ? 'Ocultar ajuda para pesquisar' : 'Precisa de ajuda para pesquisar? Veja o passo a passo' }}</button>
+    @if (showSimpleHelp) {
+      <div id="simple-help" class="simple-help" role="region" aria-label="Passo a passo para buscar vagas">
+        <h3>Como procurar uma vaga</h3>
+        <ol>
+          <li>Escreva o tipo de trabalho que procura. Exemplo: Atendimento.</li>
+          <li>Escolha onde prefere trabalhar: Remoto (de casa), Presencial (no local) ou Híbrido (parte em casa e parte no local).</li>
+          <li>Toque em "Buscar vagas" para ver os resultados.</li>
+        </ol>
+        <p>Para começar outra pesquisa, toque em "Limpar".</p>
+      </div>
+    }
     <p class="demo-notice" role="note">Exemplos para demonstração da pesquisa. Estas vagas não representam ofertas reais e não recebem candidaturas.</p>
 
     <form class="jobs-form" (ngSubmit)="search()" aria-label="Pesquisa de oportunidades">

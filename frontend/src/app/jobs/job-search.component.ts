@@ -10,6 +10,7 @@ import { DEMO_JOBS, Job, Modality, filterJobs, isModality } from './jobs.data';
   styleUrl: './job-search.component.css',
 })
 export class JobSearchComponent {
+  showSimpleHelp = false;
   keyword = '';
   selectedModality: Modality | '' = '';
   results: readonly Job[] = DEMO_JOBS;
