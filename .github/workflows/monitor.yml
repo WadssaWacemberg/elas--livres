@@ -1,0 +1,36 @@
+name: Monitorar disponibilidade do MVP acadêmico
+on:
+  schedule:
+    - cron: '17 */6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  healthcheck:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verificar HTTP e HTML da aplicação
+        id: check
+        shell: bash
+        run: |
+          URL="https://wadssawacemberg.github.io/elas--livres/"
+          HTTP_CODE=$(curl --location --silent --show-error --output /tmp/site.html --write-out '%{http_code}' --max-time 30 "$URL") || HTTP_CODE="000"
+          echo "HTTP status: $HTTP_CODE"
+          if [ "$HTTP_CODE" != "200" ]; then
+            echo "Aplicação DOWN: HTTP $HTTP_CODE"
+            exit 1
+          fi
+          if ! grep -qi '<app-root' /tmp/site.html; then
+            echo "Aplicação DOWN: conteúdo principal Angular não encontrado"
+            exit 1
+          fi
+          echo "Aplicação UP: HTTP 200 e estrutura Angular presente"
+      - name: Abrir alerta no GitHub Issues em caso de falha
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue create --repo "${{ github.repository }}" --title "Monitoramento: MVP acadêmico indisponível" --body "Falha no monitoramento da página pública em ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}. Verificar o deploy e o HTTP status."
