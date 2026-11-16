@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { JobSearchComponent } from './jobs/job-search.component';
+import { ProtectionComponent } from './protection/protection.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [JobSearchComponent],
+  imports: [JobSearchComponent, ProtectionComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })

@@ -1,0 +1,9 @@
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-protection',
+  standalone: true,
+  templateUrl: './protection.component.html',
+  styleUrl: './protection.component.css',
+})
+export class ProtectionComponent {}
