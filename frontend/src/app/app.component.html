@@ -1,0 +1,32 @@
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+<header class="header" id="inicio">
+  <div class="wrap header-row">
+    <a class="brand" href="#inicio" (click)="closeMenu()" aria-label="Elas Livres, voltar ao início"><span class="logo" aria-hidden="true">♡</span><span>elas <b>livres</b><small>LIBERDADE PARA SER</small></span></a>
+    <button class="menu" type="button" aria-label="Alternar navegação" aria-controls="navegacao" [attr.aria-expanded]="menuOpen" (click)="menuOpen = !menuOpen">☰</button>
+    <nav id="navegacao" [class.open]="menuOpen" aria-label="Navegação principal">
+      <a href="#inicio" (click)="closeMenu()">Início</a>
+      <a href="#areas" (click)="closeMenu()">Nossos espaços</a>
+      <a href="#sobre" (click)="closeMenu()">Sobre</a>
+      <a class="nav-button" href="#areas" (click)="closeMenu()">Conhecer espaços ↗</a>
+    </nav>
+  </div>
+</header>
+<main id="conteudo">
+  <section class="hero"><div class="wrap hero-grid">
+    <div class="hero-copy">
+      <p class="kicker">✳ UM ESPAÇO PARA NOVOS COMEÇOS</p>
+      <h1>Seu caminho.<br><em>Suas escolhas.</em><br>Sua liberdade.</h1>
+      <p class="lead">Toda mulher merece oportunidades para recomeçar, crescer e construir sua própria história. Um passo de cada vez, no seu ritmo.</p>
+      <div class="actions"><a class="primary" href="#areas">Explore as possibilidades <span aria-hidden="true">↗</span></a><a class="secondary" href="#sobre">Conheça a proposta</a></div>
+      <p class="footnote">♡ Informação, respeito e acolhimento.</p>
+    </div>
+    <div class="hero-art" aria-hidden="true"><span class="circle circle-one"></span><span class="circle circle-two"></span><div class="bloom"><span class="petal a"></span><span class="petal b"></span><span class="petal c"></span><span class="petal d"></span><span class="center">✳</span></div><div class="art-note">✦ &nbsp; Seu futuro tem espaço aqui.</div></div>
+  </div></section>
+  <section class="about" id="sobre"><div class="wrap about-row"><div class="asterisk" aria-hidden="true">✳</div><div><p class="kicker">ACREDITAMOS EM POSSIBILIDADES</p><h2>A liberdade começa quando você descobre que pode escolher.</h2><p>Informações acessíveis, oportunidades e caminhos de apoio ajudam a construir decisões mais seguras e uma vida com mais autonomia.</p></div></div></section>
+  <section class="areas" id="areas"><div class="wrap"><div class="areas-head"><div><p class="kicker">CONHEÇA NOSSOS ESPAÇOS</p><h2>Por onde você quer começar?</h2></div><p>Caminhos para explorar possibilidades, encontrar orientações e seguir em frente.</p></div><div class="cards">
+    @for (area of areas; track area.tag) {
+      <article class="card"><span class="card-icon" aria-hidden="true">{{ area.icon }}</span><p class="tag">{{ area.tag }}</p><h3>{{ area.title }}</h3><p>{{ area.description }}</p><div class="coming">Conteúdo em preparação <span aria-hidden="true">↗</span></div></article>
+    }
+  </div></div></section>
+</main>
+<footer><div class="wrap footer-row"><span class="footer-logo">elas <b>livres</b> ♡</span><span>Mais possibilidades, todos os dias.</span><a href="#inicio">Voltar ao início ↑</a></div></footer>
