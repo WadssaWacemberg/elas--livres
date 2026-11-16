@@ -1,0 +1,25 @@
+name: Build e testes do MVP
+on:
+  push:
+    branches: [main, feat/busca-vagas]
+  pull_request:
+    branches: [main]
+jobs:
+  verificar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Obter codigo
+        uses: actions/checkout@v4
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Instalar dependencias
+        working-directory: frontend
+        run: npm install --no-audit --no-fund
+      - name: Executar testes
+        working-directory: frontend
+        run: npm test
+      - name: Compilar Angular
+        working-directory: frontend
+        run: npm run build
