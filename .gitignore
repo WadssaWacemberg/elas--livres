@@ -1,0 +1,34 @@
+# Dependências e builds
+node_modules/
+dist/
+build/
+.angular/
+coverage/
+.nyc_output/
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.coverage
+htmlcov/
+# Ambiente e credenciais
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+# Banco de dados / exportações
+*.sqlite
+*.sqlite3
+*.sql.gz
+*.dump
+*.backup
+# Editor e SO
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+# Logs
+*.log
