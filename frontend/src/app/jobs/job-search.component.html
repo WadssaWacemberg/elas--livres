@@ -1,0 +1,46 @@
+<section id="empregos" class="jobs-section" aria-labelledby="jobs-title">
+  <div class="jobs-wrap">
+    <p class="jobs-kicker">✦ OPORTUNIDADES</p>
+    <h2 id="jobs-title">Encontre seu próximo caminho.</h2>
+    <p class="jobs-intro">Explore oportunidades por área e modalidade de trabalho.</p>
+    <p class="demo-notice" role="note">Exemplos para demonstração da pesquisa. Estas vagas não representam ofertas reais e não recebem candidaturas.</p>
+
+    <form class="jobs-form" (ngSubmit)="search()" aria-label="Pesquisa de oportunidades">
+      <div class="field">
+        <label for="job-keyword">Qual oportunidade você procura?</label>
+        <input id="job-keyword" name="keyword" type="search" [(ngModel)]="keyword" placeholder="Ex.: Atendimento" autocomplete="off">
+      </div>
+      <div class="field">
+        <label for="job-modality">Modalidade de trabalho</label>
+        <select id="job-modality" name="modality" [(ngModel)]="selectedModality">
+          <option value="">Todas as modalidades</option>
+          <option value="Remoto">Remoto</option>
+          <option value="Presencial">Presencial</option>
+          <option value="Híbrido">Híbrido</option>
+        </select>
+      </div>
+      <button class="jobs-submit" type="submit">Buscar vagas <span aria-hidden="true">→</span></button>
+      <button class="jobs-reset" type="button" (click)="reset()">Limpar</button>
+    </form>
+
+    @if (errorMessage) { <p class="jobs-error" role="alert">{{ errorMessage }}</p> }
+    <div class="results-header" aria-live="polite">
+      <h3>{{ hasSearched ? 'Resultados da pesquisa' : 'Oportunidades para explorar' }}</h3>
+      <span>{{ results.length }} {{ results.length === 1 ? 'resultado' : 'resultados' }}</span>
+    </div>
+    @if (results.length === 0 && hasSearched) {
+      <div class="empty-state" role="status"><strong>Nenhuma vaga encontrada.</strong><p>Tente outra palavra-chave ou modalidade.</p></div>
+    } @else {
+      <div class="jobs-list">
+        @for (job of results; track job.id) {
+          <article class="job-card">
+            <div class="job-top"><h4>{{ job.title }}</h4><span class="modality">{{ job.modality }}</span></div>
+            <p class="job-company">{{ job.company }} · {{ job.location }}</p>
+            <p class="job-description">{{ job.description }}</p>
+            <span class="job-demo">Vaga demonstrativa</span>
+          </article>
+        }
+      </div>
+    }
+  </div>
+</section>

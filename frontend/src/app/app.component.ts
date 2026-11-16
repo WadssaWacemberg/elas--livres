@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
+import { JobSearchComponent } from './jobs/job-search.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
+  imports: [JobSearchComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
